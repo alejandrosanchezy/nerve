@@ -1,0 +1,281 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Las redes neuronales son modelos cuantitativos que aprende como asociar una «entrada» y «patrón adaptado de salida» con el uso de algoritmos de aprendizaje. El objetivo aquí, será exponer cuatro conceptos principales del álgebra lineal que son esenciales para el análisis de estos modelos: 1) la proyección de un vector, 2) la descomposición por valores propios y singulares, 3) el gradiente de una matriz Hessiana de una función vectorial, y 4) la expansión en Taylor de una función vectorial. Estos conceptos son ilustrados con el análisis de las reglas de Hebbian y Widrow-Hoff y algunas arquitecturas simples de las redes neuronales (es decir, el auto asociador lineal, el hetero asociador y el error de redes por propagación regresiva). Se muestra también que las redes neuronales son equivalente a versiones iterativas de la estadística estándar y modelos de optimización tales como el análisis de regresión multiple y el análisis por componentes principales.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El álgebra lineal es usada particularmente para analizar la clase de redes neuronales denominadas «asociadores». Estos modelos de aprendizaje cuantitativo asocian una «entrada» y una «salida» mediante patrones adaptativos con el uso de algoritmos de aprendizaje. Cuando el conjunto de patrones de entrada es diferente del conjunto del patrón de salida, los modelos se denominan <em>heteroasociadores</em>. Cuando los patrones de entrada y los de salida son iguales, el modelo se denomina <em>autoasociador</em>. Los asociadores consisten de capas de unidades elementales denominadas <em>neuronas</em>. La información fluye a través de todas las capas. Algunas arquitecturas puede incluir capas intermedias (capas ocultas). Típicamente las neuronas de una capa están conectadas con las neuronas de otra capa. Las operaciones del álgebra lineal describe las transformaciones de la información a través de cada una de las capas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Como es usual, los vectores serán representados por letras minúsculas (e.g., $x$), las matrices por letras mayúsculas (e.g., $X$). Además se supone que las siguientes nociones son conocidas: La operación de transposición (e.g., $x^\top$), la norma de un vector (e.g.,$||x||$), el producto escalar (e.g., $x^{\top}w$) y el producto de dos matrices (e.g., $AB)$. También se usará el producto de Hadamard (e.g., $A\otimes B$).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Proyecci&#243;n">Proyecci&#243;n<a class="anchor-link" href="#Proyecci&#243;n">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Coseno-entre-dos-vectores">Coseno entre dos vectores<a class="anchor-link" href="#Coseno-entre-dos-vectores">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El <em>coseno</em> de dos vectores $x$ y $y$ es el coseno del ángulo formado por el origen del espacio y los puntos definidos por las coordenadas de los vectores. Por lo tanto,</p>
+\begin{equation}\nonumber
+\cos(x, y) = \frac{x^\top y}{||x||||y||}.
+\end{equation}<p>El coseno indica la <em>similaridad</em> entre los vectores. Cuando dos vectores son proporcionales, es decir tienen la misma dirección, su coseno es igual a uno; si tienen dirección opuesta, su coseno es igual a menos uno; y cuando ellos son ortogonales, su coseno es igual a cero.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Distancia-entre-vectores">Distancia entre vectores<a class="anchor-link" href="#Distancia-entre-vectores">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Entre una gran familia de distancias entre vectores, la más popular es la distancia euclidiana. Ésta está relacionada con el coseno entre vectores y se define como</p>
+\begin{equation}\nonumber
+d_{_2}(x,y)=\sqrt{(x-y)^\top(x-y)}
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Proyecci&#243;n-de-un-vector-sobre-otro-vector">Proyecci&#243;n de un vector sobre otro vector<a class="anchor-link" href="#Proyecci&#243;n-de-un-vector-sobre-otro-vector">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La proyección ortogonal de un vector $x$ sobre un vector $w$ se define como:</p>
+\begin{equation}\nonumber
+\operatorname{proy}_{\langle w\rangle} x = \frac{x^{\top} w}{w^{\top}w}w.
+\end{equation}<p>La norma de $\operatorname*{proy}_{\langle w\rangle} x$ es su distancia al origen del espacio. Esto es igual a:</p>
+\begin{equation}\nonumber
+||\operatorname{proy}_{\langle w\rangle} x|| = \frac{|x^{\top}w|}{||w||}= |\cos(x,y)|||x||.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Las-reglas-de-aprendizaje-de-Hebbian-y-Widrow-Hoff">Las reglas de aprendizaje de Hebbian y Widrow-Hoff<a class="anchor-link" href="#Las-reglas-de-aprendizaje-de-Hebbian-y-Widrow-Hoff">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Una red neuronal consiste de células conectadas a otras células vía conexiones de peso denominadas sinapsis. Considere una red neuronal de $I$ entradas dada por una capa de células y solo una célula de salida. La información es transmitida vía la sinapsis, del conjunto de entrada de las células externas a las células de salida con la respuesta correspondiente al estado de activación. Si el patrón de entrada y el conjunto de pesos sinápticos son dados por un vector $I$ - dimensional denotado por $x$, y $w$, la activación de la célula de salida es dada por</p>
+\begin{equation}\nonumber
+a = x^{\top}w.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Así la activación es proporcional a la norma de la proyección del vector de entradas sobre el vector de pesos. La respuesta o salida de la célula es denotada por $r$. Para una célula lineal, esta es proporcional a la activación (por conveniencia, se asume que la constante de proporcionalidad es igual a uno). Los heteroasociadores lineales y los autoasociadores son construidos con células lineales. En general, la salida de una célula es una función (no necesariamente continua), denominada la función de transferencia, y su activación es:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+\label{eqn:función}
+r = f(a).
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por ejemplo, en redes de retropropagación, la función de transferencia (no lineal) suele ser la función logística</p>
+\begin{equation}\nonumber
+r = f(a) = \operatorname{logit}(w^{\top}x) = \frac{1}{1 + \exp\{-w^{\top}x\}}.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A menudo,una red neuronal está diseñada para asociar, a una entrada dada, una respuesta específica llamada objetivo, denotada como $t$. El aprendizaje es equivalente a definir una regla que especifique cómo agregar una pequeña cantidad a cada peso sináptico en cada iteración de aprendizaje. El aprendizaje acerca la salida de la red al objetivo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Las reglas de aprendizaje vienen en dos sabores principales: <em>supervisadas</em> (por ejemplo, Widrow-Hoff) que tienen en cuenta el error o la distancia entre la respuesta de la neurona y el objetivo,  y <em>sin supervisión</em> (por ejemplo, Hebbian) que no requieren tal «retroalimentación». La regla de aprendizaje hebbiana modifica el vector de peso en la iteración $n + 1$ como</p>
+\begin{equation}\nonumber
+w_{n+1} = w_{n} + \eta t x,
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>donde $\eta$ es una pequeña constante positiva llamada <em>constante de aprendizaje</em>.Entonces, una iteración de aprendizaje hebbiana mueve el vector de peso en la dirección del vector de entrada en una cantidad proporcional al objetivo.</p>
+<p>La regla de aprendizaje de Widrow-Hoff utiliza el error y la derivada de la función de transferencia $f$ para calcular la corrección como:</p>
+\begin{equation}
+\label{eqn:corrección}
+w_{n+1} = w_{n} + \eta f'(a)(t-r) x.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Entonces, una iteración de aprendizaje de Widrow-Hoff mueve el vector de peso en la dirección del vector de entrada en una cantidad proporcional al error.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para redes con varias celdas (por ejemplo $J$) en la capa de salida, el patrón de activación, salida y objetivo se convierten en vectores $J$ - dimensionales (denotados $a$, $r$ y $t$, respectivamente), y los pesos sinápticos se almacenan en una matriz $W$ de dimensión  $I \times J$. Las ecuaciones de aprendizaje se convierten</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+W_{n+1} = W_{n} + \eta x t^{\top} \hbox{ (Hebbian)}
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+W_{n+1} = W_{n} + \eta (f'(a) \otimes x)(t- r)^{\top} \hbox{ (Widrow-Hoff)},
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>en donde la derivada $f'$ aplica sobre $a$ por cada componente, es decir, $f'(a)=(f'(a_{1}),...,f'(a_{J}))$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En general, se deben aprender varias ($K$) asociaciones de entrada / destino. Luego, el conjunto de patrones de entrada se almacena en una matriz $I \times K$ denotada como $X$, los patrones de activación y objetivo respectivamente se almacenan en matrices de dimensión $J \times K$ indicadas como $A$ y $T$, respectivamente. Las iteraciones de activación y aprendizaje se pueden calcular para todos los patrones a la vez (esto se llama modo por lotes). La matriz de salida se calcula como:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+\pmb{r} = f(A) = f(WX^{T}),    
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>en donde   $f$ también aplica sobre cada componente de $WX^{\top}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Las ecuaciones de aprendizaje se convierten</p>
+\begin{equation}
+W_{n+1} = W_{n} + \eta X T^{\top} \hbox{ (Hebbian)},
+\end{equation}\begin{equation}
+W_{n+1} = W_{n} + \eta (f'(A) \otimes X)(T- R)^{\top} \hbox{ (Widrow-Hoff).}
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Valores-propios,-vectores-propios-y-la-descomposici&#243;n-en-valores-singulares">Valores propios, vectores propios y la descomposici&#243;n en valores singulares<a class="anchor-link" href="#Valores-propios,-vectores-propios-y-la-descomposici&#243;n-en-valores-singulares">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Los vectores propios de una matriz cuadrada $W$ dada (resultante de su <em>descomposición propia</em>) son vectores invariantes bajo multiplicación por $W$. La descomposición propia se define mejor para una subclase de matrices llamadas matrices <em>semi-definidas</em> positivas. Una matriz $X$ es positiva semi-definida si existe otra matriz $Y$ tal que $X = YY^{\top}$. Este es el caso de la mayoría de las matrices utilizadas en redes neuronales, por lo que se considera solo este caso aquí.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Formalmente, un vector (distinto de cero) $u$ es un vector propio de una matriz cuadrada $W$ si</p>
+\begin{equation}
+\lambda u = Wu.
+\end{equation}<p>El escalar $\lambda$ es el valor propio asociado con $u$. Entonces $u$ es un vector propio de $W$ si su dirección es invariante bajo la multiplicación por $W$ (solo su longitud cambia si $\lambda \neq 1$). En general, hay varios vectores propios para una matriz dada (como máximo, la dimensión de $W$).  En general, se ordenan por orden decreciente de su valor propio. Entonces, el primer vector propio, $u_{1}$ tiene el mayor valor propio $\lambda_{1}$. El número de vectores propios con un valor propio distinto de cero es el rango de la matriz.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+

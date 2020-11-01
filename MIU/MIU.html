@@ -1,0 +1,473 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En esta ocasión se hará una breve introdución a el acertijo $MU$; el cual representa un pequeño <em>sistema formal</em>. Este acertijo fue planteado por Hofstadter en 1979 en su libro Godel, Escher, Bach. An Eternal Golden Braid. El objetivo del acertijo propuesto por Hofstadter es producir la cadena MU (de ahí su nombre de Acertijo $MU$) dentro de un sistema formal conocido como el sistema $MIU$; el nombre del sistema se toma del hecho de que sólo emplea tres letras del alfabeto: $M$, $I$, $U$. Esto significa que las cadenas del sistema $MIU$ estarán formadas exclusivamente por esas tres letras. Para comenzar, el sistema $MIU$ parte de una cadena inicial, la cadena $MI$, es decir, $MI$ es el único axioma del sistema en cuestión. Las cadenas que sean producidas deberán conseguirse aplicando las reglas que se mencionan a continuación:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p><strong>Regla 1</strong>. Si se tiene una cadena cuya última letra sea $I$, se le puede agregar una $U$ al final. Dicho en otras palabras, si $xI$ es un teorema, también lo es $xIU$. En este caso $x$ representa cualquier cadena arbitraria. Por ejemplo, si se tiene la cadena $MII$, entonces se puede obtener $MIIU$.</p>
+</li>
+<li><p><strong>Regla 2</strong>. Suponga que $Mx$  es un teorema. En tal caso también $Mxx$ es un teorema. Por ejemplo, si se tiene la cadena $MIU$ se puede obtener la cadena $MIUIU$.</p>
+</li>
+<li><p><strong>Regla 3</strong>. Si en una de las cadenas de la colección aparece la secuencia $III$, puede elaborarse una nueva cadena sustituyendo $III$ por $U$. Por ejemplo, si se tiene la cadena $UMIIIMU$ se puede elaborar $UMUMU$. Observe que las tres $III$ deben  ser consecutivas.</p>
+</li>
+<li><p><strong>Regla 4</strong>. Si aparece $UU$ en el interior de una de las cadenas, está permitida su eliminación. Por ejemplo, dado $MUUUIII$ se puede obtener $MUIII$.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Un primer intento para resolver este acertijo, es proceder a generar de manera manual algunas cadenas, como primer paso, se observa que a partir de el axioma $MI$ y aplicando las reglas, se pueden obtener las siguientes cadenas:</p>
+<ol>
+<li>$MIU$</li>
+<li>$MII$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La primera cadena se obtiene después de aplicar la regla 1, y la segunda, casualmente después de aplicar la regla 2. Es posible observar que no se pueden aplicar las reglas 3 y 4 a $MI$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Después se tiene que ver qué cadenas se pueden generar de $MIU$ y cuáles de $MII$. De $MIU$ solo es posible generar $MIUIU$; sin embargo, de $MII$ se pueden generar $MIIU$ y $MIIII$. Si se sigue aplicando este proceso, se tendrá que buscar qué cadenas ahora se pueden formar de $MIUIU$, $MIIU$ y $MIII$, y seguir así secuencialmente hasta que en alguna de esas generaciones se encuentre la cadena $MU$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id='1'></a></p>
+<div align="center">
+<img src="treeMIU.svg">
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>De lo anterior se puede deducir que, esta búsqueda nos lleva a la generación de un árbol de teoremas como el mostrado en la <a href="#1">Figura 1</a> , y como puede observarse, cada nodo puede tener una cantidad variada de hijos. En un principio, se podría pensar que cada nodo solo puede tener a lo máximo cuatro hijos, pero si se analiza detenidamente el problema, se puede llegar a la conclusión de que no necesariamente será así, por ejemplo, de la cadena $MIIIIIIIU$ aplicando solamente la regla 3 se pueden obtener las siguientes cadenas:</p>
+<ol>
+<li>$MUIIIIU$</li>
+<li>$MIUIIIU$</li>
+<li>$MIIUIIU$</li>
+<li>$MIIIUIU$</li>
+<li>$MIIIIUU$</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>De aquí se deduce que el número de hijos de cada nodo es variable y puede ser muy grande.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Es tu turno de construir nuevas cadenas y extraer tus propias conclusiones, para facilitar el ejercicio, puede hacer uso del siguiente código en donde están codificadas las cuatro reglas del sistema formal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="k">class</span> <span class="nc">MIU</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Definition of the primary chain.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;MI&#39;</span>
+    
+    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Check the game status.</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+    
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Restart the game state. </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s1">&#39;MI&#39;</span>
+        
+    <span class="k">def</span> <span class="nf">rule_one</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Definition of rule one of the MIU system.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">+</span> <span class="s1">&#39;U&#39;</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Can not use this rule...&#39;</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+    
+    <span class="k">def</span> <span class="nf">rule_two</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Definition of rule two of the MIU system.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+    
+           
+    <span class="k">def</span> <span class="nf">rule_three</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Definition of rule three of the MIU system.</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?=(III))&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>  
+        
+        <span class="n">words</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="n">slices</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span><span class="p">[:</span><span class="n">j</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">1</span><span class="p">)],</span> <span class="n">word</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">1</span><span class="p">):]]</span>
+            <span class="n">chain</span> <span class="o">=</span> <span class="s1">&#39;U&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">chain</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Option </span><span class="si">{}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">new_chain</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">words</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>  
+            
+            <span class="n">option</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Choose an option: &#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Can not use this rule...&#39;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+    
+    
+    <span class="k">def</span> <span class="nf">rule_four</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Definition of rule four of the MIU system.</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?=(UU))&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span> 
+            
+        <span class="n">words</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="n">new_chain</span> <span class="o">=</span> <span class="n">word</span><span class="p">[:</span><span class="n">j</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">1</span><span class="p">):]</span>
+            <span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_chain</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Option </span><span class="si">{}</span><span class="s1">:&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">new_chain</span><span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">words</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        
+            <span class="n">option</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Choose an option: &#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Can not use this rule...&#39;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para utilizarlo, solo tienes que hacer una instancia del clase MIU:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span> <span class="o">=</span> <span class="n">MIU</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Luego sería usar cada uno de los métodos de la clase:</p>
+<ul>
+<li><code>rule_one()</code>, <code>rule_two()</code>, <code>rule_three()</code> y <code>rule_four()</code> para hacer uso de cualquiera de las reglas del sistema MIU.</li>
+<li><code>get_state()</code> para ver el estado del juego.</li>
+<li><code>reset()</code> para reiniciar el juego.</li>
+</ul>
+<p>A continuación algunos ejemplos del uso:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">rule_one</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MIU&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">rule_one</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Can not use this rule...
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MIU&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">rule_four</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Can not use this rule...
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MIU&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">rule_two</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MIUIU&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">rule_two</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MIUIUIUIU&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">game</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;MI&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finalmente, la pregunta es ¿Puedes encontrar MU? ¿Puedes construir un nuevo algoritmo que permita decidir si una cadena $x$ es demostrable dentro del sistema MIU? ¿Qué quiere decir que una cadena es demostrable en MIU? Espero seguir discutiendo estás preguntas en el futuro, por ahora les recomiendo que se pasen por la referencia que motivo esta entrada.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Referencias">Referencias<a class="anchor-link" href="#Referencias">&#182;</a></h2><ul>
+<li>Hofstadte. 1979. Godel, Escher, Bach. An Eternal Golden Braid.</li>
+</ul>
+
+</div>
+</div>
+</div>
+ 
+
