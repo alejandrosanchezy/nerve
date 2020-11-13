@@ -1,4 +1,4 @@
 .idea/
 *.iml
 *.xml
-*.ipynb_chexkpoints
+*.ipynb_checkpoints
