@@ -1,0 +1,135 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Algoritmo-de-Prim">Algoritmo de Prim<a class="anchor-link" href="#Algoritmo-de-Prim">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Considere un grafo $G$ conexo y no dirigido, se dice que un <b>árbol    generador</b> es un subgrafo que contiene todos los vértices de $G$. En un <b>grafo ponderado</b>, el peso de un subgrafo es la suma de los pesos de cada una de las aristas en el subgrafo. Así, un <b>árbol generador mínimo</b> (MST por sus siglas en inglés) es un subgrafo ponderado no dirigido que es un árbol generador con peso mínimo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hay muchos problemas en los que se requiere hallar un MST de un grafo no    dirigido. Por ejemplo, la longitud mínima del cable necesaria para conectar un conjunto de computadores en una red, puede ser determinada por un MST    del grafo no dirigido que contiene todas las posibles conexiones.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El Algoritmo de Prim, es el primero y el más sencillo de los algoritmos de la teoría de grafos para encontrar un árbol generador mínimo en un grafo ponderado, conexo y no dirigido, este problema se conoce como <b>el     problema del árbol generador mínimo</b>. En otras palabras, el algoritmo    encuentra un subconjunto de aristas que forman un árbol con todos los   vértices, donde el  peso total de todas las aristas en el árbol es el   mínimo posible.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Este algoritmo fue desarrollado por primera vez por el matemático checo Vojtêch Jarník, no sería hasta más tarde, en 1957, cuando aparecería publicado de forma independiente bajo la autoría del ingeniero informático estadounidense Robert C. Prim. Es él quien le dio fama y por cuyo apellido es hoy conocido. Creado durante su etapa en Bell Labs, Prim trataba de abordar el problema de cómo conectar redes, ya fueran de telecomunicaciones o de transporte y distribución, mediante un número reducido o barato de conexiones.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#191;C&#243;mo funciona el algoritmo Prim?<a class="anchor-link" href="#&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La solución al problema del árbol generador propuesta por Prim se basa en la idea de ir conectando vértices secuencialmente hasta alcanzarlos a todos. Si se tiene como dato de entrada un grafo no dirigido $G=(V, A, W)$, donde $V$ son los vértices, $A$ las aristas y $W$ la matriz de pesos. El algoritmo empieza a construir el árbol a partir de un vértice seleccionado arbitrariamente como punto de inicio. A continuación se itera seleccionando en cada etapa la arista de menor peso (una cualquiera si hay varias posibilidades) que une un vértice 
+del árbol con otro que aún no está en él; luego se incorpora dicha arista y el vértice de destino al árbol. El proceso se repite hasta añadir todos los vértices, obteniendo como resultado un árbol generador cuyo peso será mínimo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El algoritmo podría ser informalmente descrito siguiendo los siguientes pasos:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Inicializar un árbol $T$ con un único vértice, elegido arbitrariamente del grafo $G$.</li>
+<li>Aumentar el árbol por una arista. Encontrar la arista de menor costo de las posibles aristas que pueden conectar el árbol a los vértices que no están aún en el árbol y agregarla al árbol.</li>
+<li>Repetir el paso 2 hasta que todos los vértices del grafo pertenezcan al árbol.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Con más detalle, se debe implementar el siguiente pseudocódigo:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Algoritmo de Prim</strong></p>
+<blockquote> 
+Input: $G=(V, A, W), s\in V$    
+<br>&nbsp; &nbsp;&nbsp;$V^{\top}\leftarrow \{s\}$
+<br>&nbsp; &nbsp;&nbsp;$A^{\top}\leftarrow \emptyset$
+<br>&nbsp; &nbsp;&nbsp;while $card(V^{\top}) < card(V)$ do:
+<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$\displaystyle (i, j)=\operatorname*{argmin\,\,}_{(i, j)}\{w_{ij}:i\in V^{\top}, j\in V\setminus V^{\top}\}$
+<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $A^{\top} \leftarrow A^{\top}\cup\{(i, j)\}$
+<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $V^{\top} \leftarrow V^{\top}\cup\{j\}$   
+<br>&nbsp; &nbsp;&nbsp;end    
+<br>return: $T$, $V(T)\leftarrow V^{\top}$, $A(T)\leftarrow A^{\top}$.
+
+</blockquote><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ejemplo">Ejemplo<a class="anchor-link" href="#Ejemplo">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En la figura 1 se ilustra la ejecución del algoritmo de Prim sobre un grafo $G$. Se empieza por el vértice $v_{_0}$. Dado que $(v_{_0},v_{_1})$ es la arista de peso mínimo que incide sobre $v_{_0}$, se incluye en el árbol generador que se está construyendo (figura 1a}). En la figura 1a , se añade la arista $(v_{_1}, v_{_5})$ porque es la arista más pequeña entre $\{v_{_0}, v_{_1}\}$ y $V(G)\setminus  \{v_{_0}, v_{_1}\}$. Cuando hay un empate, como en la figura 1c, cualquier arista más pequeña podría funcionar bien. Se procede de esta forma hasta que se pasa por todos los vértices. El árbol generador mínimo definitivo se muestra en la figura 1f.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
