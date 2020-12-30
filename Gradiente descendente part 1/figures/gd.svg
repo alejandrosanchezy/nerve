@@ -19,7 +19,6 @@
   <defs
      id="defs2408">
     <linearGradient
-       inkscape:collect="always"
        id="linearGradient1824"
        osb:paint="gradient">
       <stop
@@ -497,14 +496,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="-14.223511"
-     inkscape:cy="183.11989"
+     inkscape:cx="-158.86637"
+     inkscape:cy="211.69132"
      inkscape:document-units="mm"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="2560"
      inkscape:window-height="1016"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g2428"
@@ -526,7 +525,8 @@
   </metadata>
   <g
      id="g2428"
-     transform="translate(-41.430776,-93.450444)">
+     transform="translate(-41.430776,-93.450444)"
+     style="display:inline">
     <g
        style="fill:#000000;fill-opacity:1"
        id="g1707"
@@ -540,7 +540,7 @@
          height="100%" />
     </g>
     <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:#749b88;stroke-width:0.237486;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;stroke:#749b88;stroke-width:0.237486;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect2419"
        width="97.832748"
        height="38.941883"
@@ -549,7 +549,7 @@
        transform="matrix(1,0,-0.70498129,0.7092259,0,0)" />
     <path
        id="rect2419-0"
-       style="fill:#ffffff;stroke:#1040f2;stroke-width:0.313732;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;stroke:#1040f2;stroke-width:0.313732;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="m 114.78662,108.94573 c 22.76845,-3.04612 45.34956,11.61912 23.1447,13.21606 -16.80008,1.20823 -19.28395,-1.95529 -26.38028,-1.71922 -2.01388,0.067 -4.39924,0.40779 -7.5887,1.19999 -20.46356,5.08278 -21.624333,2.65264 -21.624333,2.65264 -3.822261,-3.64847 17.772993,-13.38606 32.448613,-15.34947 z"
        sodipodi:nodetypes="ssssss" />
     <path
