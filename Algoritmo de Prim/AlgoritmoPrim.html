@@ -40,8 +40,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#191;C&#243;mo funciona el algoritmo Prim?<a class="anchor-link" href="#&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#182;</a></h2><hr>
-
+<h2 id="&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#191;C&#243;mo funciona el algoritmo Prim?<a class="anchor-link" href="#&#191;C&#243;mo-funciona-el-algoritmo-Prim?">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -85,20 +84,33 @@ del árbol con otro que aún no está en él; luego se incorpora dicha arista y 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
 <p><strong>Algoritmo de Prim</strong></p>
 <blockquote> 
 Input: $G=(V, A, W), s\in V$    
-<br>&nbsp; &nbsp;&nbsp;$V^{\top}\leftarrow \{s\}$
-<br>&nbsp; &nbsp;&nbsp;$A^{\top}\leftarrow \emptyset$
-<br>&nbsp; &nbsp;&nbsp;while $card(V^{\top}) < card(V)$ do:
-<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$\displaystyle (i, j)=\operatorname*{argmin\,\,}_{(i, j)}\{w_{ij}:i\in V^{\top}, j\in V\setminus V^{\top}\}$
-<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $A^{\top} \leftarrow A^{\top}\cup\{(i, j)\}$
-<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $V^{\top} \leftarrow V^{\top}\cup\{j\}$   
-<br>&nbsp; &nbsp;&nbsp;end    
+<br>1. &nbsp; &nbsp;&nbsp;$V^{\top}\leftarrow \{s\}$
+<br>2. &nbsp; &nbsp;&nbsp;$A^{\top}\leftarrow \emptyset$
+<br>3. &nbsp; &nbsp;&nbsp;while $card(V^{\top}) < card(V)$ do:
+<br>4. &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$\displaystyle (i, j)=\operatorname*{argmin\,\,}_{(i, j)}\{w_{ij}:i\in V^{\top}, j\in V\setminus V^{\top}\}$
+<br>5. &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $A^{\top} \leftarrow A^{\top}\cup\{(i, j)\}$
+<br>6. &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $V^{\top} \leftarrow V^{\top}\cup\{j\}$   
+<br>8. &nbsp; &nbsp;&nbsp;end    
 <br>return: $T$, $V(T)\leftarrow V^{\top}$, $A(T)\leftarrow A^{\top}$.
 
-</blockquote><hr>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ejemplo">Ejemplo<a class="anchor-link" href="#Ejemplo">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En la figura 1 se ilustra la ejecución del algoritmo de Prim sobre un grafo $G$. Se empieza por el vértice $v_{_0}$. Dado que $(v_{_0},v_{_1})$ es la arista de peso mínimo que incide sobre $v_{_0}$, se incluye en el árbol generador que se está construyendo (figura 1a). En la figura 1a , se añade la arista $(v_{_1}, v_{_5})$ porque es la  arista más pequeña entre $\{v_{_0}, v_{_1}\}$ y $V(G)\setminus  \{v_{_0}, v_{_1}\}$. Cuando hay un empate, como en la figura 1c, cualquier arista más pequeña podría funcionar bien. Se procede de esta forma hasta que se pasa por todos los vértices. El árbol generador mínimo definitivo se muestra en la figura 1f.</p>
 
 </div>
 </div>
@@ -106,30 +118,572 @@ Input: $G=(V, A, W), s\in V$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ejemplo">Ejemplo<a class="anchor-link" href="#Ejemplo">&#182;</a></h2>
+<p><a id='1'></a></p>
+<div align="center">
+<img src="figures/AlgoritmoPrim.svg">
+</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>En la figura 1 se ilustra la ejecución del algoritmo de Prim sobre un grafo $G$. Se empieza por el vértice $v_{_0}$. Dado que $(v_{_0},v_{_1})$ es la arista de peso mínimo que incide sobre $v_{_0}$, se incluye en el árbol generador que se está construyendo (figura 1a}). En la figura 1a , se añade la arista $(v_{_1}, v_{_5})$ porque es la arista más pequeña entre $\{v_{_0}, v_{_1}\}$ y $V(G)\setminus  \{v_{_0}, v_{_1}\}$. Cuando hay un empate, como en la figura 1c, cualquier arista más pequeña podría funcionar bien. Se procede de esta forma hasta que se pasa por todos los vértices. El árbol generador mínimo definitivo se muestra en la figura 1f.</p>
+<p>La complejidad de tiempo del algoritmo de Prim depende de las estructuras de datos usada para el grafo y para ordenar las aristas por peso, lo que se puede hacer usando una cola de prioridad. La siguiente muestra las opciones típicas:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Para una matriz de adyacencia y un algoritmo de busqueda clásico la complejidad de ejecución es del orden de $O(\operatorname*{card\,\,}(V)^{2})$.</li>
+<li>Para una pila binaria y una lista de adyacencia la complejidad de ejecución es del orden de  $O((\operatorname*{card\,\,}(V)+\operatorname*{card\,\,}(E))\log\operatorname*{card\,\,}(V))$.</li>
+<li>Para una pila de Fibonacci y una lista de adyacencia la complejidad de ejecución es del orden de $O(\operatorname*{card\,\,}(E) + \operatorname*{card\,\,}(V)log(\operatorname*{card\,\,}(V))$.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#191;C&#243;mo-se-implementa-en-Python-el-algoritmo-de-Prim?">&#191;C&#243;mo se implementa en Python el algoritmo de Prim?<a class="anchor-link" href="#&#191;C&#243;mo-se-implementa-en-Python-el-algoritmo-de-Prim?">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Una forma de implementar el algoritmo de Prim es así:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">graphs</span> <span class="kn">import</span> <span class="n">NotOrientedGraph</span>
+<span class="kn">from</span> <span class="nn">graphs</span> <span class="kn">import</span> <span class="n">Vertex</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El módulo <code>graph</code> contiene la estructura de datos utilizada para el grafo y la puedes encontrar en el repositorio de <a src ='https://github.com/alejandrosanchezy/nerve/tree/master/Algoritmo%20de%20Prim'>Nerve</a>. El resto del algoritmo es:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">NotOrientedGraph</span><span class="p">,</span> <span class="n">initial_vertex</span><span class="p">:</span> <span class="n">Vertex</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NotOrientedGraph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Input:</span>
+<span class="sd">        graph: It&#39;s a graph not oriented and connected.</span>
+<span class="sd">        initial_vertex: It&#39;s one vertex from graph.</span>
+<span class="sd">    Output:</span>
+<span class="sd">        The return is a graph not oriented and connected.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Initialize empty edges array and empty minimum spanning tree:</span>
+    <span class="n">minimum_spanning_tree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">visited_vertices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="n">min_edge</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">infty</span><span class="p">)</span>
+
+    <span class="c1"># Arbitrarily choose initial vertex from graph:</span>
+    <span class="n">vertex</span> <span class="o">=</span> <span class="n">initial_vertex</span>
+
+    <span class="c1"># Indices:</span>
+    <span class="n">start_vertex</span><span class="p">,</span> <span class="n">end_vertex</span><span class="p">,</span> <span class="n">weight</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Run prim&#39;s algorithm until we create an minimum spanning tree that</span>
+    <span class="c1"># contains every vertex from the graph:</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">visited_vertices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">graph</span><span class="o">.</span><span class="n">num_vertices</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+
+
+            <span class="c1"># Mark this vertex as visited:</span>
+            <span class="n">visited_vertices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
+
+            <span class="c1"># Set of potential edges:</span>
+            <span class="n">edges</span> <span class="o">+=</span> <span class="n">vertex</span><span class="o">.</span><span class="n">edges</span>
+
+            <span class="c1"># Find edge with the smallest weight to a vertex that has not yet</span>
+            <span class="c1"># been visited:</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+                <span class="n">inequality</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">weight</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_edge</span><span class="p">[</span><span class="n">weight</span><span class="p">]</span>
+                <span class="n">membership</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">end_vertex</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited_vertices</span>
+                <span class="k">if</span> <span class="n">inequality</span> <span class="ow">and</span> <span class="n">membership</span><span class="p">:</span>
+                    <span class="n">min_edge</span> <span class="o">=</span> <span class="n">edge</span>
+
+            <span class="c1"># Get the start and end node from minimum edge:</span>
+            <span class="n">start_min_edge</span> <span class="o">=</span> <span class="n">min_edge</span><span class="p">[</span><span class="n">start_vertex</span><span class="p">]</span>
+            <span class="n">end_min_edge</span> <span class="o">=</span> <span class="n">min_edge</span><span class="p">[</span><span class="n">end_vertex</span><span class="p">]</span>
+            <span class="n">min_weight</span> <span class="o">=</span> <span class="n">min_edge</span><span class="p">[</span><span class="n">weight</span><span class="p">]</span>
+
+            <span class="c1"># Add the minimum edge to minimum spanning tree:</span>
+            <span class="k">if</span> <span class="n">minimum_spanning_tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">start_min_edge</span><span class="o">.</span><span class="n">id</span><span class="p">):</span>
+                <span class="n">edge</span> <span class="o">=</span> <span class="p">(</span><span class="n">end_min_edge</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">min_weight</span><span class="p">)</span>
+                <span class="n">minimum_spanning_tree</span><span class="p">[</span><span class="n">start_min_edge</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edge</span> <span class="o">=</span> <span class="p">[(</span><span class="n">end_min_edge</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">min_weight</span><span class="p">)]</span>
+                <span class="n">minimum_spanning_tree</span><span class="p">[</span><span class="n">start_min_edge</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge</span>
+
+            <span class="c1"># Remove min weight edge form list of edges:</span>
+            <span class="n">edges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">min_edge</span><span class="p">)</span>
+
+            <span class="c1"># Start at new vertex and reset min edge:</span>
+            <span class="n">vertex</span> <span class="o">=</span> <span class="n">end_min_edge</span>
+            <span class="n">min_edge</span> <span class="o">=</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">infty</span><span class="p">)</span>
+            
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The graph is not connected or has no edges!&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Return the optimal tree:</span>
+    <span class="k">return</span> <span class="n">NotOrientedGraph</span><span class="p">(</span><span class="n">minimum_spanning_tree</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para usar el algoritmo de Prim es necesario tener un grafo no orientado que podemos construir de la siguiente manera:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> 
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)],</span> 
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span> <span class="o">=</span> <span class="n">NotOrientedGraph</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La clase <code>NotOrientedGraph</code> tiene varios métodos que permite consultar algunas de las propiedades de nuestro grafo, a continuación veamos algunos ejemplos:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([(&#39;a&#39;, &#39;c&#39;, 0),
+  (&#39;c&#39;, &#39;a&#39;, 3),
+  (&#39;c&#39;, &#39;b&#39;, 3),
+  (&#39;c&#39;, &#39;d&#39;, 2),
+  (&#39;c&#39;, &#39;e&#39;, 1),
+  (&#39;b&#39;, &#39;c&#39;, 1),
+  (&#39;b&#39;, &#39;e&#39;, 3)],
+ graphs.NotOrientedGraph)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">weight_matrix</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(matrix([[inf,  0., inf, inf, inf],
+         [ 3., inf,  3.,  1.,  2.],
+         [inf,  1., inf,  3., inf],
+         [inf, inf, inf, inf, inf],
+         [inf, inf, inf, inf, inf]]),
+ [&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">graph</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(matrix([[0, 1, 0, 0, 0],
+         [1, 0, 1, 1, 1],
+         [0, 1, 0, 1, 0],
+         [0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0]]),
+ [&#39;a&#39;, &#39;c&#39;, &#39;b&#39;, &#39;e&#39;, &#39;d&#39;])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Además también se necesita de un vértice inicial que para nuestro ejemplo será:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial_vertex</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_vertex</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Al ejecutar el algoritmo de Prim se obtiene un nuevo grafo conexo y no orientado:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span> <span class="o">=</span> <span class="n">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">initial_vertex</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Para nuestro ejemplo, se peude verificar que en efecto el grafo obtenido pasa por todos los vertices y además también nos entrega cuales son la arista que se usando para construirlo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;a&#39;, &#39;c&#39;, &#39;e&#39;, &#39;d&#39;, &#39;b&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">get_edges</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>([(&#39;a&#39;, &#39;c&#39;, 0), (&#39;c&#39;, &#39;e&#39;, 1), (&#39;c&#39;, &#39;d&#39;, 2), (&#39;c&#39;, &#39;b&#39;, 3)],
+ graphs.NotOrientedGraph)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#191;Por-qu&#233;-funciona-el-algoritmo-de-Prim?">&#191;Por qu&#233; funciona el algoritmo de Prim?<a class="anchor-link" href="#&#191;Por-qu&#233;-funciona-el-algoritmo-de-Prim?">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A continuación vamos a establecer el siguiente resultado:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<p><strong>Teorema.</strong> Sea $G$ un grafo conexo, no orientado y ponderado. Entonces al aplicar el algoritmo de Prim desde cualquier vértice se obtiene un árbol de expansión con costo mínimo.</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Como $G$ es un grafo conexo entonces siempre es posible encontrar una camino $r$ que une a cualquier par de vértices de $G$. Observe que para la $k$ - ésima iteración del algoritmo de Prim el subgrafo $T_{_k}$ es conexo, no orientado y ponderado. Es fácil ver ue cada par de vértices de $T_{_k}$ está conectado por exactamente un camino. Además es claro que existe una $n$ - ésima iteración, $n &lt; \operatorname*{card\,\,}(V(G))$, donde $T_{_n}$ es un grafo que contiene todo los vértices de $G$, es decir $V(T_{_n}) )= V(G)$. Es claro que $T_{_n}$ es un árbol.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>¿Es $T_{_n}$ un árbol de expansión con costo mínimo para el graho $G$? Suponga que $Y_{_1}$ es un árbol de expansión con costo mínimo para el grafo $G$. Si $T_{_n} = Y_{_1}$ entonces $T_{_n}$ es un árbol mínimo. Por otro lado si $T_{_n} \neq Y_{_1}$, entonces considera la $k$ - ésima iteración del algoritmo de Prim donde se agregó la primera arista $e$ al subgrafo $T_{_{k-1}}$ que no está en $Y_{_1}$. Observe que uno de los extremos de $e$ esta en $V(T_{_{k-1}})$ y el otro no. Como $Y_{_1}$ es un árbol de expansión con costo mínimo  de $G$, entonces existe un camino $r$ en $Y_{_1}$ que une los extremos de $e$. En el camino $r$ debe existir una arista $f$ que une al subgrafo $T_{_{k-1}}$ con algún vértice que no está en $V(T_{_{k-1}})$. Observe que en la $k$ - ésima iteración en donde se agregó $e$ también era posible agregar $f$ en vez de $e$ si y sólo si el peso $w(f)$ de $f$ era menor o igual al peso $w(e)$ de $e$, como $f$ no se agregó se concluye que $w(f)\geq w(e)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sea $Y_{2}$ es grafo tal que $A(Y_{_2}) = (A(Y_{_1})\setminus\{f\})\cup \{e\}$, es decir, el grafo que resulta de remover de $Y_{_1}$ la arista $f$ y agregar la arista $e$. Es fácil ver que $Y_{_2}$ es conexo, tiene el mismo número de vértices que $Y_{_1}$ y su costo total no supere al coso total de $Y_{_1}$, por lo tanto $Y_{_2}$ también es un árbol de expansión con costo mínimo de $G$ que contiene a $e$ y a todas las aristas de $T_{_{k-1}}$. Repitiendo este mismo proceso para $Y_{2}$, buscamos la $k$ - ésima iteración en el algoritmo de Prim donde se haya agregado una arista que está en $T_{_{k-1}}$ pero no está en $Y_{_2}$, eventualmente se encontrará un árbol de expansión con costo mínimo para $G$ que será igual a $T_{_n}$. Esto prueba que el árbol obtenido por el algoritmo de Prim es un árbol de expansión con costo mínimo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Conclusiones">Conclusiones<a class="anchor-link" href="#Conclusiones">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Una implementación simple de Prim, usando una matriz de adyacencia o una representación del grafo en una lista de adyacencia y buscando linealmente una matriz de pesos para encontrar el borde de peso mínimo para agregar, requiere un tiempo de ejecución de $O( \operatorname*{card\,\,}(V)^2)$. Sin embargo, este tiempo de ejecución se puede mejorar mucho más mediante el uso de pilas para implementar la búsqueda de aristas de peso mínimo en el bucle interno del algoritmo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Una primera versión mejorada usa una pila para almacenar todos las del grafo de entrada, ordenados por su peso. Esto conduce a un tiempo de ejecución en el peor de los casos de $O ( \operatorname*{card\,\,} (E) \log  \operatorname*{card\,\,}(E))$. Pero almacenar vértices en lugar de arista puede mejorarlo aún más. La pila debe ordenar los vértices por el peso de borde más pequeño que los conecte a cualquier vértice en el árbol de expansión mínimo parcialmente construido (MST) (o infinito si no existe tal arista). Cada vez que se elige un vértice $v$ y se agrega al MST, se realiza una operación de disminución de clave en todos los vértices $w$ fuera del MST parcial de manera que $v$ está conectado a $w$, estableciendo la clave al mínimo de su valor anterior y el costo de la arista de $(v, w)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Usando una estructura de datos de pila binaria simple, ahora se puede mostrar que el algoritmo de Prim se ejecuta en el tiempo $O ( \operatorname*{card\,\,}(E) \log  \operatorname*{card\,\,}( V))$ donde $ \operatorname*{card\,\,}(E)$ es el número de aristas y  $\operatorname*{card\,\,}(V)$ es el número de vértices. Usando una pila de Fibonacci más sofisticada, esto se puede reducir a $O ( \operatorname*{card\,\,}( E) +  \operatorname*{card\,\,}( V ) \log  \operatorname*{card\,\,}( V ))$, que es asintóticamente más rápido cuando el grafo es lo suficientemente denso que  $\operatorname*{card\,\,}( E)$ es $\omega ( \operatorname*{card\,\,}(V))$, y el tiempo lineal cuando  $\operatorname*{card\,\,}( E)$ es al menos $ \operatorname*{card\,\,}( V ) \log  \operatorname*{card\,\,}( V )$. Para grafos de densidad aún mayor (que tienen al menos  $c\operatorname*{card\,\,}( V )$ aristas  con $c&gt; 1$), se puede hacer que el algoritmo de Prim se ejecute en tiempo lineal de manera aún más simple, utilizando una pila d-aria en lugar de una pila de Fibonacci.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>No olvides comentar y suscribirte al blog para que estés enterando de los posts que voy a ir subiendo semana a semana. También sientete en libertad de seguirme en Twitter, Github e Instagram.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contacto">Contacto<a class="anchor-link" href="#Contacto">&#182;</a></h2><ul>
+<li>Participa de la canal de Nerve a través de <a src='https://discord.gg/edPmghPq8K'>Discord</a>.</li>
+<li>Se quieres conocer más acerca de este tema me puedes contactar a través de <a src='https://www.classgap.com/me/alejandro-sanchez-yali'>Classgap</a>.</li>
+</ul>
+
+</div>
+</div>
 </div>
  
 

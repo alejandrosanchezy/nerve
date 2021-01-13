@@ -15,7 +15,10 @@
    version="1.1"
    id="svg2413"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="gd.svg">
+   sodipodi:docname="gd.svg"
+   inkscape:export-filename="/home/alejandro/Documentos/Github/nerve/Gradiente descendente part 1/figures/gd.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <defs
      id="defs2408">
     <linearGradient
@@ -496,7 +499,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="-158.86637"
+     inkscape:cx="-177.4378"
      inkscape:cy="211.69132"
      inkscape:document-units="mm"
      inkscape:document-rotation="0"
@@ -519,7 +522,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
