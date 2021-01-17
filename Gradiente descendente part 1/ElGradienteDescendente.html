@@ -1,10 +1,32 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>El objetivo del algoritmo del gradiente descendente (AGD) es la minimización de una función diferenciable convexa<a href="#10"><sup>1</a>, $f:\Omega\subset\mathbb{R}^n \to \mathbb{R}$, es decir, permite encontrar un $w$ en $\Omega$ tal que $f(w)$ es un mínimo, en otras palabras, se utiliza para determinar los elementos del siguiente conjunto:</p>
+<h2 id="El-algoritmo-del-gradiente-descendente">El algoritmo del gradiente descendente<a class="anchor-link" href="#El-algoritmo-del-gradiente-descendente">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El <strong>gradiente descendente</strong> (GD) es un algoritmo de optimización genérico, capaz de encontrar soluciones óptimas para una amplia gama de problemas. La idea del gradiente descendente es ajustar los parámetros de forma iterativa para minimizar una función.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Concretamente, se tiene de una función diferenciable convexa<a href="#10"><sup>1</a>, $f:\Omega\subset\mathbb{R}^n \to \mathbb{R}$, eel algoritmo GD permite encontrar un $w$ en $\Omega$ tal que $f(w)$ es un mínimo, en otras palabras, GD se utiliza para determinar los elementos del siguiente conjunto<a href="#11"><sup>2</a>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='1'></a>
 \begin{equation}\tag{1}
-w \in \operatorname*{argmin\,\,}_{ w\in \Omega} f(w) 
+w \in \operatorname*{argmin\,\,}_{ w\in \Omega} f(w).
 \end{equation}</p>
 
 </div>
@@ -13,15 +35,43 @@ w \in \operatorname*{argmin\,\,}_{ w\in \Omega} f(w)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Este algoritmo es una serie de iteracciones que se hacen de acuerdo con la siguiente regla de actualización:</p>
+<p>Para determinar los valores de $w$ que optimiza la función $f(w)$, GD hace uno de una serie de iteracciones que se hacen de acuerdo con la siguiente regla de actualización:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='2'></a>
 \begin{equation}\tag{2}
     w_{t+1} = w_{t} -\eta_{t} \nabla f(w_{t}),
 \end{equation}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>que usualmente se inicializa en cero y cada iteración, como se puede observar, se hace en la dirección negativa del gradiente. Recuerde que el gradiente se define como el vector:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 \begin{equation}\nonumber
 \nabla f(w)=\left(\frac{\partial f}{\partial x_{1}}(w),\dots, \frac{\partial f}{\partial x_{n}}(w)\right).
-\end{equation}<p>Además, también se puede observar en este algoritmo la presencia de la variable $\eta_{t} &gt; 0$,  que se denominada usualmente como <em>la tasa de aprendizaje en la iteración $t$</em> y que como se verá más adelante ésta es definida como un parámetro externo del algoritmo.</p>
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Un hiperparámetro importante en GD es el $\eta_{t} &gt; 0$, denominado como <strong>tasa de aprendizaje</strong>. Si la tasa de aprendizaje es demasiado pequeña, entonces el algoritmo tendrá que pasar por muchas iteraciones para converger, lo que llevará mucho tiempo. Por otro lado, si la tasa de aprendizaje es demasiado alta, es posible que se salte el mínimo global y termine en otro lado, posiblemente incluso más alto que antes. Esto podría hacer que el algoritmo diverja, con valores cada vez mayores, sin encontrar una buena solución.</p>
 
 </div>
 </div>
@@ -89,16 +139,17 @@ f(w_{1})-f(w_{0}))=-\eta ||\nabla f(w_{o})||^2 + o(\eta)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<blockquote>   
-    <u><strong>Algoritmo del gradiente descendente (AGD)</strong></u>
-<br>
+<hr>
+<p><strong>Algoritmo del gradiente descendente (AGD)</strong></p>
+<blockquote> 
 Input: $w_0$, $m$, $\eta$, $\nabla f(w)$
-<br>&nbsp; &nbsp;&nbsp;for $k=0$ to $m$ do:
-<br>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$w\leftarrow w - \eta \nabla f(w)$
-<br>&nbsp; &nbsp;&nbsp;end    
+<br>1. &nbsp; &nbsp;&nbsp;for $k=0$ to $m$ do:
+<br>2. &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;$w\leftarrow w - \eta \nabla f(w)$
+<br>3. &nbsp; &nbsp;&nbsp;end    
 <br>return: $w$
 
-</blockquote>
+</blockquote><hr>
+
 </div>
 </div>
 </div>
@@ -265,7 +316,7 @@ x_{t+1}=x_{t}-\eta_{k}(Qx-b)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">initial_x</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
@@ -329,7 +380,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
@@ -343,7 +394,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">quadratic_form</span> <span class="o">=</span> <span class="n">QuadraticForm</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> 
@@ -372,7 +423,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">initial_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">105.5</span><span class="p">,</span> <span class="mf">105.8</span><span class="p">])</span>
@@ -393,7 +444,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">initial_x</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">quadratic_form</span><span class="p">)</span>
@@ -420,7 +471,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -446,7 +497,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">initial_x</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">quadratic_form</span><span class="o">.</span><span class="n">eta</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.0000001</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">quadratic_form</span><span class="p">)</span>
@@ -473,7 +524,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -507,7 +558,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -523,7 +574,7 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -553,7 +604,16 @@ b = \left(\begin{array}{c} 3 \\ 0.5 \end{array}\right)
 <h2 id="Conclusiones">Conclusiones<a class="anchor-link" href="#Conclusiones">&#182;</a></h2><ul>
 <li>Se logró aprender que el AGD es un algoritmo iterativo empleado principalmente para resolver problemas de optimización.</li>
 <li>La principal desventaja del AGD se encuentra en el ajuste adecuado de la tasa de aprendizaje $\eta$. Si $\eta$ toma un valor muy pequeño, es necesario un gran número de iteraciones para que el proceso converga; si por otro lado $\eta$ es muy grande, entonces puede ocurrir que el proceso no converga.</li>
+<li>Finalmente te invito a leer este otro post (<a src='https://alejandrosanchezyali.blogspot.com/2020/10/post-2.html'>Jugando con el gradiente descendente y Python</a>) en donde se análiza el comportamiento general de los algoritmos por gradiente descendente.</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>No olvides comentar y suscribirte al blog para que estés enterando de los posts que voy a ir subiendo semana a semana. También sientete en libertad de seguirme en LinkedIn, Twitter, Github e Instagram.</p>
 
 </div>
 </div>
@@ -582,6 +642,14 @@ f(\alpha w + (1-\alpha)z)\leq \alpha f(w) + (1-\alpha)f(z).
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="11">[2]</a>. Si $y_{\min}$ es el mínimo global de una función $f(x)$, entonces se define el operador $\operatorname*{argmin\,\,}$ como siguiente conjunto: $$\operatorname*{argmin\,\,}_{ x \in X} f(x) = \{x\in X: f(x) = y_\min\}.$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Referencias">Referencias<a class="anchor-link" href="#Referencias">&#182;</a></h2><ul>
 <li>Kris Hauser. <a src='http://homes.sice.indiana.edu/classes/spring2012/csci/b553-hauserk/gradient_descent.pdf'>Algorithms for optimization and learning. University of Indiana</a>.</li>
 <li><a src ='https://www.andrewng.org/'>Andrew Ng</a>. <a scr='http://cs229.stanford.edu/materials.html'>Machine learning course materials</a>. Technical report, University of Stanford.</li>
@@ -590,6 +658,30 @@ f(\alpha w + (1-\alpha)z)\leq \alpha f(w) + (1-\alpha)f(z).
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contacto">Contacto<a class="anchor-link" href="#Contacto">&#182;</a></h2><ul>
+<li>Participa de la canal de Nerve a través de <a src='https://discord.gg/edPmghPq8K'>Discord</a>.</li>
+<li>Se quieres conocer más acerca de este tema me puedes contactar a través de <a src='https://www.classgap.com/me/alejandro-sanchez-yali'>Classgap</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 
