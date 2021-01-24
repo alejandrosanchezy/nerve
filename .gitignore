@@ -1,5 +1,3 @@
-*/.idea/*
 *.iml
 *.xml
-/.ipynb_checkpoints/
-/*/.ipynb_checkpoints/
+
