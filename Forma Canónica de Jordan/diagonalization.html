@@ -1,0 +1,1901 @@
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#193;lgebra-Lineal-Parte-2/4:-Diagonalizaci&#243;n-de-matrices">&#193;lgebra Lineal Parte 2/4: Diagonalizaci&#243;n de matrices<a class="anchor-link" href="#&#193;lgebra-Lineal-Parte-2/4:-Diagonalizaci&#243;n-de-matrices">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En esta entrada vamos a regresar a la pregunta original que motivó nuestra discusión de los valores propios y vectores propios en primer lugar: dada una transformación lineal $T: V\to V$ sobre un espacio finito dimensional $V$, ¿Es posible encontrar una base $\beta$ de $V$ tal que la matriz asociada $[T]_{\beta}^{\beta}$ es una matriz diagonal?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Definición 1.</strong> <em>Un operador lineal $T:V \to V$ sobre un espacio finito dimensional $V$ es <strong>diagonalizable</strong> si existe una base $\beta$ de $V$ tal que la matriz asociada $[T]_{\beta}^{\beta}$ es una matriz diagonal.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Esta definición también se puede formular para matrices; si $A$ es una matriz de orden $n\times n$, entonces $A$ es la matriz de $T:F^{n}\to F^{n}$ dada por la multiplicación a izquierda por $A$. En este caso podemos decir que $A$ es diagonalizable cuando $T$ es diagonalizable. De los resultados para cambios de base, esto es equivalente a decir que existe una matriz invertible $Q\in M_{n\times n}(F)$, denominada <strong>matriz de cambio de base</strong> $Q=[I]_{\beta}^{\gamma}$, para la cual $Q^{-1}A Q = [I]_{\gamma}^{\beta}[T]_{\gamma}^{\gamma}[I]_{\beta}^{\gamma} = [T]_{\beta}^{\beta}$ es una matriz diagonal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Definición 2.</strong> Una matriz $A\in M_{n\times n}(F)$ es diagonalizables sobre $F$ si existe una matriz invertible, $Q\in M_{n\times n}(F)$ para cual $Q^{-1}AQ$ es una matriz diagonal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recuerden que hay que tener un particular cuidado con el campo $F$, ya que la diagonalización de una matriz depende parcialmente del campo $F$ sobre el cual se esté trabajando.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recuerde que se dice que dos matrices $A$ y $B$ de orden $n\times n$ son similares si existe una matriz invertible $n\times n$ tal que $B= Q^{-1}AQ$. Por lo tanto, una matriz es diagonalizable precisamente cuando es similar a una matriz diagonal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Nuestro objetivo es caracterizar las transformaciones lineales.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Polinomio característico y similaridad</strong>. <em>Si $A$ y $B$ son similares, entonces ellas tienen el mismo polinomio característico, determinante, traza y valores propios (y sus valores propios tienen las mismas multiplicidades).</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Suponga que $B = Q^{-1}AQ$. Para el polinomio característico, se computa simplemente $\det(\lambda I - B) =$ $\det(Q^{-1}(\lambda I)Q - Q^{-1}AQ)=$ $\det(Q^{-1}(\lambda I - A)Q) = $ $ \det(Q^{-1})\det(\lambda I -A)\det(Q)= $ $\det(\lambda I - A)$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>El determinante y la traza son ambos coeficientes para el polinomio característico así que ellos son también iguales.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Finalmente, los valores propios son las raíces del polinomio característico, así que llos son los mismos y ocurren con la misma multiplicidad para $A$ y $B$</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align: right"> $\Box$ </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Los vectores propios para matrices similares también esta cercanamente relacionados:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Valores propios y similaridad.</strong> <em>Si $B = Q^{-1}AQ$, entonces $v$ es un vector propios de $B$ con valor propio $\lambda$ si y solo si $Qv$ es un vector propio de $A$ con valor propio $\lambda$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración. Dado que $Q$ es invertible, $v=0$ si y sólo si $Qv=0$. Ahora asumamos que $v\neq 0$. Primero suponemos que $v$ es un vector propio de $B$ con valor propio $\lambda$. Entonces $A(Qv)=Q(Q^{-1}AQ)v=Q(Bv)=Q(\lambda v) = \lambda (Qv)$, esto quiere decir que $Qv$ es un vector propio de $A$ con valor propio $\lambda$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Inversamente, si $Qv$ es un vector propio de $A$ con valor propio $\lambda$. Entonces $Bv = Q^{-1}A(Qv) = Q^{-1}\lambda (Qv) = \lambda (Q^{-1}Qv) = \lambda v$, así $v$ es un vector propio de $B$ con valor propio $\lambda$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Corolario</strong>. <em>Si $B = Q^{-1}AQ$, entonces los subespacios propios para $B$ tienen las mismas dimensiones como los subespacios propios para $A$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En esencia, diaganalizabilidad es equivalente a la existencia de una base de vectores propios:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Diagonalizabilidad</strong>. <em>Un operador lineal $T:V\to V$ es diagonalizable si y solo si existe una base $\beta$ de $V$ que consiste de vectores propios de $T$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Suponga primero que $V$ tiene una base de vectores propios $\beta = \{v_1, v_2,\dots, v_n\}$ con sus respectivos valores propios $\lambda_1, \lambda_2, \dots, \lambda_n$. Entonces por hipótesis, $T(v_i)=\lambda_i v_i$, y así $[T]_{\beta}^{\beta}$ es la matriz diagonal con entradas en la diagonal principal $\lambda_1,\dots, \lambda_n$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Inversamente, suponga que $T$ es diagonalizable y sea $\beta = \{v_1,\dots, v_n\}$ una base tal que $[T]_{\beta}^{\beta}$ es una matriz diagonal cuyas entradas son $\lambda_1, \cdots, \lambda_n.$ Entonces por hipótesis, cada $v_1$ es no cero y $T(v_i)=\lambda_i v_i$ para cada $v_i$ es un vector propio de $T$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align: right"> $\Box$ </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Aunque el resultado anterior da una caracterización de las transformaciones diagonalizables, no es enteramente obvio como para determinar que tal bases de vectores propios existe</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Resulta que esencialmente se puede verificar esta propiedad en cada espacio propio. Se ha provado antes, que la dimensión de cada $\lambda$ - subespacio propio de $T$ es menor o igual que la multiplicidad de $\lambda$ como una raíz del polinomio característico.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dado que que el polinomio característico tiene grado $n$, esto quiere decir que la suma de las dimensiones de los $\lambda$ - subespacios no es superios a $n$, y puede ser superior a $n$ solo cuando cada subespacio propio tiene dimensión igual a la multiplicidad de sus correspondientes valores propios.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El objetivo ahora, es mostrar que si cada subespacio propio tiene dimensión igual a la multiplicidad de sus correspondientes valores propios, entonces la matriz será diagonalizable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pero para hacer esto, antes se necesita un resultado intermedio acerca de la independencia de los vectores propios que tienen distintos valores propios.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Independencia de los vectores propios.</strong> <em>Si $v_1$, $v_2$,..., $v_n$ son vectores propios de $T$ asociados a los distintos valores propios $\lambda_1, \lambda_2, \dots, \lambda_n$ cuando $v_1,\dots, v_{n}$ son linealmente independientes.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Razonando por inducción sobre $n$. Es caso base para $n=1$ es trivial, dado que por definición un vector propio no puede ser zero. Suponga ahora que $n\leq 2$ y eque se tiene la dependencia lineal $a_1v_1+\cdots + a_nv_n=0$ para los vectores propios $v_1, \dots, v_n$ teniendo distintos valores propios $\lambda_1, \cdots \lambda_n$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Aplicando ahora $T$ a ambos lados $T(a_1v_1+\cdots + a_nv_n) = a_1(\lambda_1 v_1) +\cdots + a_n(\lambda_n v_n) = 0$. Pero si ahora restamos la dependencia original por un factor de $\lambda_1$ se ontiene la nueva relacipon:</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+a_2(\lambda_2-\lambda_1)v_2 + a_3(\lambda_3 - \lambda_1)v_3 + \cdots a_n(\lambda_n - \lambda_1)v_n = 0.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Por la hipótesis inductiva, todos los coeficientes de esta dependencia debe ser cero, y así se tienen $\lambda_k \neq \lambda_1$ para cada $k$, así se concluye que $a_2 = \cdots = a_n = 0$. Entonces $a_1 v_1 = 0$ implica que $a_1 = 0$, con lo que se concluye la prueba.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align: right"> $\Box$ </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A continuación vamos a formalizar la noción de tener todos los valores propios en $F$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Definición</strong>. <em>Si $p(x)\in F[x]$, se dice que $p(x)$ es <strong>factorizable</strong> en $F$ si $p(x)$ se puede escribir como el producto de factores lineales en $F[x]$, es decir $p(x)=a(a-r_1)(x-r_2)\cdot\cdots \cdot(x-r_d)$ para algún $a, r_1, r_2, \dots, r_d\in F$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Informalmente, un polinomio es factorizable sobre $F$ cuando todas sus raíces son elementos de $F$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 1.</strong> El polinomio $x^2 -2$ no es factorizable en $\mathbb{Q}$, pero si es completamente factorizable sobre $\mathbb{R}$ dado que se puede escribir $x^2-2 =(x-\sqrt{2})(x-\sqrt{2})\in \mathbb{R}[x]$. Observe que las raíces $\sqrt{2}$ y $-\sqrt{2}$ del polinomio no son elementos de $\mathbb{Q}$ pero si son elementos de $\mathbb{R}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 2.</strong> El polinomio $x^2-1$ es factorizable sobre $\mathbb{Q}$, dado que se puede escribir $x^2-1 = (x-1)(x+1)$ en $\mathbb{Q}[x]$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si $A$ es una matriz de orden $n\times n$, se dice que todos sus valores propios están en $F$ cuando el polinomio característico de $A$ es factorizable en $F$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ahora vamos a establecer un criterio de diagonalización de matrices:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Creterio de diagonalización</strong>. <em>Una matriz $A\in M_{n\times n}(F)$ es diagonalizable sobre $F$ si y solo si todos los valores propios están den $F$, y para cada valor propio $\lambda$, la dimensión del $\lambda$ - espacio es igual a la multplicidad de $\lambda$ como una raíz del polinomio característico.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Si la matriz $A$ de orden $n\times n$ es diagonalizable, entonces las entradas de la diagonal de sus diagonalización son los valores propios de $A$, así ellos deberán estár en el campo escalar $F$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Además, por teorema anterior sobre diagonalización, $V$ tiene una base $\beta$ de vectores propios para $A$. Ahora, para cualquier valor propio $\lambda_i$ de $A$, sea $b_i$ el número de elementos de $\beta$ que tienen valor propio $\lambda_i$, y sea $d_i$ la multiplicidad de $\lambda_i$ como una raíz del polinomio característico.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Por lo tanto $\sum_i b_i = n$ dado que $\beta$ es una base para $V$, y $\sum_i d_i = n$, de los resultados anteriores el polinomio característico $b_i \leq d_i$. Por lo tanto $n = \sum_i b_i \leq \sum_i d_i = n$, así $b_i = d_i$ para cada $i$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Por otro lado, suponga que los valores propios de $A$ están en $F$ y que $b_i = d_i$ para todo $i$. Entonces sea $\beta$ la unión de las bases para cada subespacio propio de $A$. Por hipótesis, $\beta$ contiene $\sum_i b_i = \sum_i d_i = n$ vectores, así se concluye que es una base $n$ - dimensional para el espacio $V$, ahora solo debemos demostrar que son linealmente indipendientes.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Explicitamente, sea $\beta_i = \{v_{i, 1}, \dots, v_{i, j_i}\}$ la base de los $\lambda_i$ - subespacios para cada $i$, así que $\beta = \{v_{1, 1}, v_{1, 2},\dots, v_{k, j}\}$ y $Av_{i, j} =  \lambda_i v_{i, j}$ para cada par $(i, j)$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Suponga que hay dependencia $a_{1, 1} v_{1, 1} + \cdots + a_{k, j} = 0$. Sea $w_i = \sum_{j} a_{i, j} v_{i, j}$, y observe que $w_i$ tiene $Aw_i = \lambda_i w_i$, y sea $w_1 + w_2 +\cdots + w_k = 0$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Si alguno de los $w_i$ es no nulo, entonces se tendría un dependecia linela no trivial entre los valores propios de $A$ con distinto valores propios, pero estos es imposible por teorema anterior.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Por lo tanto, cada $w_i=0$, quiere decir que $a_{i, 1}v_{i, 1}+\cdots + a_{k, j_i}v_{i, j_i} = 0$. Pero como $\beta_i$ es linealmente independiente, todos los coeficientes $a_{i, j}$ deben ser cero. Por lo tanto, $\beta$ debe ser linealmente independiente y por lo tanto es una base para $V$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align: right"> $\Box$ </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Corolario</strong>. <em>Si $A\in M_{n\times n} (F)$ tiene $n$ valores propios distintos en $F$, entonces $A$ es diagonalizable sobre $F$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Para cada valor propio se debe tener multiplicidad uno como una raíz del polinomio característico. Dado que hay $n$ valores propios y la suma de sus multiplicidades es también $n$. Entonces la dimensión de cada valor propio es igual a uno (dado que la dimensión siempre está entre uno y la multiplicidad). Así por el teorema anterior, $A$ es diagonalizable.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align: right"> $\Box$ </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La prueba del teorema de diagonalización da un procedimiento explicito para determinar la diagonalizabilidad y la diagonalización de una matriz. Para determinar cuando una transformación lineal $T$ (o matriz) es diagonalizable, y hallar una base $\beta$ tal que $[T]_{\beta}^{\beta}$ es diagonal (o una matriz $Q$ con $Q^{-1}AQ$ diagonal), se siguen los siguientes pasos:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>Encontrar el polinomio característico y los valores propios de $T$ (o $A$).</li>
+<li>Encontrar una base para cada subespacio propio de $T$ (o A).</li>
+<li>Determinar si $T$ (o $A$) es diagonalizable. Si la dimensión de cada subespacio propio es igual a número de veces que los valores propios aparecen como raíces del polinomio característico, en otro caso $T$ es no diagonalizable. </li>
+<li>Para una transformación lineal $T$ diagonalizable, sea $\beta$ una base de los vectores propios para $T$. Para una matriz $A$, la matriz $Q$ de diagonalización puede ser tomada como la matriz cuyas columnas son una base de vectores propios de $A$. </li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 3.</strong> Para $T:\mathbb{R}^{2}\to \mathbb{R}^{2}$ dado por $T(x, y)=\langle -2y, 3x + 5y\rangle$, determinar cuando $T$ es diagonalizable y si es así, hallar una base $\beta$ tal que $[T]_{\beta}^{\beta}$ es diagonal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>La matriz $A$ asociada para $T$ relativa a la base estandar es:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">factor</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Computamos el polinomio característico</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">polynomial</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">charpoly</span><span class="p">()</span>
+<span class="n">factor</span><span class="p">(</span><span class="n">polynomial</span><span class="o">.</span><span class="n">as_expr</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left(\lambda - 3\right) \left(\lambda - 2\right)$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por lo tanto los valores propios son $\lambda = 2, 3$. Datoa que los valores propios son distintos, entonces $T$ es diagonalizables.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Usaremos la siguiente función para calcular las transformaciones $T_\lambda = \lambda I - A$:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">eye</span>
+<span class="k">def</span> <span class="nf">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+    <span class="n">identity</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">eigenvalue</span> <span class="o">*</span> <span class="n">identity</span> <span class="o">-</span> <span class="n">A</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_2</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_3</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Luego los espacios propios para las transformaciones propias $T_2$ y $T_3$ son:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_2</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [-1],
+ [ 1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_3</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [-2/3],
+ [   1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Esto quiere decir que $[1, -1]^{\top}$ es una base para el $2$ - subespacio propio, y $[-2, 3]^{\top}$ es una base para el $3$ - subespacio.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por lo tanto para $\beta = \{[1, -1]^{\top}, [-2, 3]^{\top}\}$, se puede ver que:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+[T]_{\beta}^{\beta} = \begin{bmatrix} 2 &amp; 0 \\ 0 &amp; 3 \end{bmatrix}
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En efecto:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">Q</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[\begin{matrix}2 &amp; 0\\0 &amp; 3\end{matrix}\right]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 4</strong>. Para la matriz $A = \begin{bmatrix} 1 &amp; -1 &amp; -1 \\ 0 &amp; 1 &amp; -1 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}$ determinar si existe una matriz diagonal $D$ y matriz $A$ con $D = Q^{-1}AQ$, y si es así, encontrarla.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">factor</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sus valores propios son:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">eigenvals</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{1: 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Los valores propios son $\lambda = 1, 1, 1$. Esto se puede comprobar fácilmente debido a que $A$ es una matriz triangular y por lo tanto su polinomio característico es $\det(\lambda I - A) = (\lambda - 1)^3$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por otro lado la transformación propio $T_1$ es:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0\end{matrix}\right]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Donde su espacio nulo es:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [1],
+ [0],
+ [0]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por lo tanto el $1$ - subespacio propio es generado por $[1, 0, 0]^{\top}$. Dado que la dimensionalidad de este espacio no es igual a la multiplicidad de $\lambda = 1$, entonces la matriz $A$ no es diagonalizable y por lo tanto no existen las matrices $D$ y $Q$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 5.</strong> Para la matriz $\begin{bmatrix} 1 &amp; -1 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 1 \end{bmatrix}$, determine si existe una matriz diagonal $D$ y una matriz invertible $Q$ tal que $D = Q^{-1}AQ$, si es así, encontrarlas.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">factor</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">polynomial</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">charpoly</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">factor</span><span class="p">(</span><span class="n">polynomial</span><span class="o">.</span><span class="n">as_expr</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left(\lambda - 2\right) \left(\lambda - 1\right)^{2}$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Así, los valores propios son $\lambda = 1, 1, 2$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Las tranformaciones propias sociadas respectivamente a cada valor de $\lambda$ son:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_2</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sus respectivos subespacios serían:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [1],
+ [0],
+ [0]]),
+ Matrix([
+ [0],
+ [0],
+ [1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_2</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [-1/2],
+ [ 1/2],
+ [   1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por lo tanto $\{[1, 0, 0]^{\top}, [0, 0, 1]^{\top}\}$ es una base para el $1$ - subespacio propio y $\{[-1, 1, 2]^{\top}$ es una base para el $2$ - subespacio propio.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dado que la dimensionalidad de cada subespacio propio es igual a su multiplicidad de su respectivo valor propio, entonces $A$ es diagonaizable y se toma a $D$ y $Q$ como:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ahora hay que comprobar que $D = Q^{-1}AQ$ y en efecto se tiene:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span> <span class="o">==</span> <span class="n">Q</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">Q</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Observación.</strong> Se puede tomar tambień las siguientes matrices $D$ y $Q$:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Y nuevamente se comprueba que $D = Q^{-1}A Q$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span> <span class="o">==</span> <span class="n">Q</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">Q</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Es decir no hay una razón particular para para preocuparse mucho sobre qué matriz diagonal diagonal, siempre que se organicen los vectores propios y los valores propios de manera correspondiente. También se  podría haber utilizado cualquier otra base de los espacios propios para construir $Q$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sabiedno que una matriz es diagonalizable, esta puede ser muy útil para realizar algunos cálculos complejos.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por ejemplo, si $A$ es una matriz diagonalizable con $D = Q^{-1}A Q$, entonces es muy fácil computar cualquier pontencia de $A$. Explicitamente, dado que se puede escribir $A = QD^{-1}$, entonces $A^{k}=(QDQ^{-1})^{k}=QD^{k}Q^{-1}$. Pero como $D$ es diagonal, entonces $D^{k}$ es simplemente una matriz diagonal cuyas entradas son las $k$ potencias de las entradas de $D$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 5.</strong> Si $A = \begin{bmatrix} -2 &amp; -6 \\ 3 &amp; 7 \end{bmatrix}$, encontrar una formula de la $k$ potencia $A^{k}$, para un entero positivo.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">symbols</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">eigenvals</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{4: 1, 1: 1}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Los valores propios son $\lambda = 4, 1$. Así las transformaciones propias serían:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_4</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span> <span class="o">=</span> <span class="n">eigen_transformation</span><span class="p">(</span><span class="n">eigenvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Y sus respectivos espacios nulos serían:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_4</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[37]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [-1],
+ [ 1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">T_1</span><span class="o">.</span><span class="n">nullspace</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[38]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[Matrix([
+ [-2],
+ [ 1]])]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Por lo tanto una base para el $4$ - subespacio propio es $\{[-1, 1]^{\top}\}$ y una base para el $1$ - subespacio propio es $\{[-2, 1]^{\top}\}$. Así las matrices $D$ y $Q$ serían:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Luego, $D^{k}$ y $A^{k}$ son:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">D</span><span class="o">**</span><span class="n">k</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[41]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[\begin{matrix}1 &amp; 0\\0 &amp; 4^{k}\end{matrix}\right]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">**</span><span class="n">k</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[42]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[\begin{matrix}2 - 4^{k} &amp; 2 - 2 \cdot 4^{k}\\4^{k} - 1 &amp; 2 \cdot 4^{k} - 1\end{matrix}\right]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finalmente, hay que verificar que $A^{k} = QD^{k}Q^{-1}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">**</span><span class="n">k</span> <span class="o">==</span> <span class="n">Q</span><span class="o">*</span> <span class="n">D</span><span class="o">**</span><span class="n">k</span> <span class="o">*</span> <span class="n">Q</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[43]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>También se puede usar la diagonalización de una matriz para probar nuevos teoremas de una forma más simple. He aquí un ejemplo típico.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Definición.</strong> <em>Si $T:V\to V$ es un operador y $p(x) = a_0 + a_1 x+\cdots a_nx^n$ es un polinomio, se define:
+$$p(T)= a_0 I + a_1 T + \cdots a_n T^{n}.$$
+Similarmente, si $A$ es una matriz de orden $n\times n$, se define:
+$$p(A) = a_0 I + a_1 A + \cdots a_n A^{n}.$$
+Es fácil comprobar que $Q^{-1}p(A)Q = p(Q^{-1}AQ)$.</em></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong>Caley-Hamilton.</strong> Si $p(x)$ es el polinómio característico de la matriz $A$, entonces $p(A)$ es la matriz cero.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>El mismo se resultado se dá para el polinomio característico del operador lineal $T:V\to V$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Ejemplo 6.</strong> Para la matriz $\begin{bmatrix} 2 &amp; 2 \\ 3 &amp; 1 \end{bmatrix}$, se tiene:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">eye</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>con polinomio característico:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">charpoly</span><span class="p">()</span><span class="o">.</span><span class="n">as_expr</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[46]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \lambda^{2} - 3 \lambda - 4$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Se computar fácilmente $A^{2} - 3 A - 4I_{2}$, en efecto:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">A</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[47]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[\begin{matrix}0 &amp; 0\\0 &amp; 0\end{matrix}\right]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Demostración</em>. <em>Si $A$ es diagonalizable, entonces $D = Q^{-1} A Q$ con $D$ diagonal, y sea $p(x)$ el polinomio característico de $A$. La diagonal de entradas de $D$ son los valores propios $\lambda_1,\dots, \lambda_n$ de $A$. por lo tanto son raíces del polinómio característico, es decir $p(\lambda_1)=\cdots=p(\lambda_n)=0$.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Se puede verificar fácilmente que:</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+\begin{equation}
+p(D)=p\left(\begin{bmatrix} \lambda_1 &amp; &amp; \\ &amp;\ddots &amp; \\ &amp; &amp; \lambda_n\end{bmatrix}\right) = \begin{bmatrix} p(\lambda_1) &amp; &amp; \\ &amp;\ddots &amp; \\ &amp; &amp; p(\lambda_n)\end{bmatrix} = \begin{bmatrix} 0 &amp; &amp; \\ &amp;\ddots &amp; \\ &amp; &amp; 0\end{bmatrix}=0.
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Luego $p(A) = Q p(D) Q^{-1} = 0$ cómo se quería probar.</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>En el caso de una matriz $A$ no diagonalizable, la prueba del teorema de Cayley Hamilton es sustancialmente más dificil. Este caso se tratará en la sigueinte sección usando la forma canónica de Jordan.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Bibliograf&#237;a">Bibliograf&#237;a<a class="anchor-link" href="#Bibliograf&#237;a">&#182;</a></h2><ol>
+<li>Evan Dummit, 2020, Linear Algebra - part 4: Eingenvalues, Diagonalization, and the Jordan Form.</li>
+<li>SymPy Development Team. 2021. <a href="https://docs.sympy.org/latest/index.html">Sympy 1.8 documetation</a>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contacto">Contacto<a class="anchor-link" href="#Contacto">&#182;</a></h2><ul>
+<li>Participa del canal de Nerve a través de <a href="https://discord.gg/edPmghPq8K">Discord</a>.</li>
+<li>Se quieres conocer más acerca de este tema me puedes contactar a través de <a href="https://www.classgap.com/me/alejandro-sanchez-yali">Classgap</a>.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Si el post fue de tu agrado muestra tu apoyo compartiéndolo, suscribiéndote al blog, siguiéndome o realizando una donación.</p>
+
+</div>
+</div>
+</div>
+ 
+
