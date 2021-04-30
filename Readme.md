@@ -4,5 +4,4 @@ En este repositorio encontrarás los notebooks con el contenido de mis apuntes d
 
 Si quieres saber más de Fundamental Nerve  puedes visitar el sitio: [https://alejandrosanchezyali.blogspot.com](https://alejandrosanchezyali.blogspot.com/) o participar del canal de Discord: [https://discord.gg/edPmghPq8K](https://discord.gg/edPmghPq8K).
 
-
 Si tienes alguna observación o si deseas participar de este proyecto puedes escribirme a través de twitter [@asanchezyali](https://twitter.com/asanchezyali).
